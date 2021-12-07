@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image, TouchableOpacity, Linking, Dimensions} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
+import * as WebBrowser from 'expo-web-browser';
 
 
 LogBox.ignoreAllLogs(true);
@@ -20,11 +21,23 @@ function HomeScreen({ navigation }) {
           <View>
             <TouchableOpacity onPress={()=>navigation.navigate('Sobre')} style={styles.btnNavigation}>
               <Ionicons name="ios-information-circle" size={29} color='white'></Ionicons>
-              <Text style={{color:'white', margin:8}}>Sobre</Text>
+              <Text style={{color:'white', margin:8, fontWeight:'600'}}>Sobre</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>navigation.navigate('Portfolio')} style={styles.btnNavigation}>
+            <TouchableOpacity onPress={ ()=>navigation.navigate('Portfolio')} style={styles.btnNavigation}>
               <Ionicons name="ios-ribbon" size={29} color='white'></Ionicons>
-              <Text style={{color:'white', margin:8}}>Portfolio</Text>
+              <Text style={{color:'white', margin:8, fontWeight:'600'}}>Portfolio</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://github.com/igBFranco')}} style={styles.btnNavigation}>
+              <Ionicons name="logo-github" size={29} color='white'></Ionicons>
+              <Text style={{color:'white', margin:8, fontWeight:'600'}}>GitHub</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://www.linkedin.com/in/igorbuenofranco/')}} style={styles.btnNavigation}>
+              <Ionicons name="logo-linkedin" size={29} color='white'></Ionicons>
+              <Text style={{color:'white', margin:8, fontWeight:'600'}}>LinkedIn</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://www.instagram.com/igorbfranco/')}} style={styles.btnNavigation}>
+              <Ionicons name="logo-instagram" size={29} color='white'></Ionicons>
+              <Text style={{color:'white', margin:8, fontWeight:'600'}}>Instagram</Text>
             </TouchableOpacity>
           </View>
       </ScrollView>
@@ -36,22 +49,70 @@ function SobreScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Sobre</Text>
-      <Button
-        title="Ir para a tela Home"
-        onPress={() => navigation.navigate('Home')}
-      />
+      
     </View>
   );
 }
 
 function PortfolioScreen({ navigation }) {
+
+  const[images, setImages] = useState([
+    {
+      img: require('./resources/img.png'),
+      width:0,
+      height:0,
+      ratio:0,
+      website:'https://github.com/igBFranco/crud_codeigniter_m2'
+    },
+    {
+      img: require('./resources/img2.png'),
+      width:0,
+      height:0,
+      ratio:0,
+      website:'https://github.com/igBFranco/projetoqualidade'
+    },
+  ]);
+
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  const abrirNavegador = async(website)=>{
+    let result = await WebBrowser.openBrowserAsync(website);
+  }
+
+  useEffect(()=> {
+    let windowWidthN = Dimensions.get('window').width;
+    setWindowWidth(windowWidthN - 30 - 40);
+    let newImages = images.filter(function(val){
+      let w = Image.resolveAssetSource(val.img).width;
+      let h = Image.resolveAssetSource(val.img).height;
+
+      val.width = w;
+      val.height = h;
+      val.ratio = h/w;
+
+      return val;
+    })
+
+    setImages(newImages);
+
+  }, [])
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Portfolio</Text>
-      <Button
-        title="Ir para a tela Home"
-        onPress={() => navigation.navigate('Home')}
-      />
+    <View style={{ flex: 1, padding:10}}>
+      <ScrollView contentContainerStyle={{padding:20}} style={styles.container}>
+        <Text style={styles.textHeader}>Últimos Projetos!</Text>
+
+        {
+          images.map(function(val){
+            return(
+              <View>
+                <Image style={{width:windowWidth, height:windowWidth*val.ratio, resizeMode:'stretch'}} source={val.img}></Image>
+                <TouchableOpacity onPress={()=>abrirNavegador(val.website)} style={styles.btnSite}><Text style={{color:'white', fontSize:'15'}}>Abrir no Navegador</Text></TouchableOpacity>
+              </View>
+            );
+          })
+        }
+      </ScrollView>
     </View>
   );
 }
@@ -116,6 +177,14 @@ const styles = StyleSheet.create({
     marginTop:15,
     flexDirection:'row',
     borderRadius:30,
+  },
+  btnSite:{
+    backgroundColor:'#1d2e8c',
+    padding:15,
+    margin:15,
+    flexDirection:'row',
+    borderRadius:20,
+    justifyContent:'center'
   }
 
 });
