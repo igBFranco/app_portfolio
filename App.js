@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -16,6 +16,16 @@ function HomeScreen({ navigation }) {
           <View style={{flexDirection:'row', alignItems:'center'}}>
             <Image source={{uri: 'http://1.gravatar.com/avatar/1f1c7c76fc6e11ae275fe52525522795?s=200'}} style={{width:100, height:100, borderRadius:100}}/>
             <Text style={styles.textHeader}>Igor Bueno Franco</Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={()=>navigation.navigate('Sobre')} style={styles.btnNavigation}>
+              <Ionicons name="ios-information-circle" size={29} color='white'></Ionicons>
+              <Text style={{color:'white', margin:8}}>Sobre</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('Portfolio')} style={styles.btnNavigation}>
+              <Ionicons name="ios-ribbon" size={29} color='white'></Ionicons>
+              <Text style={{color:'white', margin:8}}>Portfolio</Text>
+            </TouchableOpacity>
           </View>
       </ScrollView>
     </View>
@@ -99,6 +109,13 @@ const styles = StyleSheet.create({
     fontSize:25,
     marginLeft:20,
     fontWeight:'400',
+  },
+  btnNavigation:{
+    backgroundColor:'#1d2e8c',
+    padding:20,
+    marginTop:15,
+    flexDirection:'row',
+    borderRadius:30,
   }
 
 });
