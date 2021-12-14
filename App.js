@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image, TouchableOpacity, Linking, Dimensions} from 'react-native';
+import { View, Text , Button, LogBox, ScrollView, StyleSheet, Image, TouchableOpacity, Linking, Dimensions, TextInput} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
 import * as WebBrowser from 'expo-web-browser';
+import Modal from './Modal.js';
 
 
 LogBox.ignoreAllLogs(true);
@@ -55,6 +56,15 @@ function SobreScreen({ navigation }) {
 
   
   return (
+    <View style={{ flex: 1}}>
+
+      {
+        (showModal) ?
+        <Modal showModal={showModal} setModal={setModal} abrirModalContato={abrirModalContato}/>
+        :
+        <View></View>
+      }
+
       <View style={{ flex: 1, padding:10}}>
         <View style={styles.containerSobre}>
               <Image source={{uri: 'http://1.gravatar.com/avatar/1f1c7c76fc6e11ae275fe52525522795?s=200'}} style={{width:100, height:100, borderRadius:100}}/>
@@ -103,6 +113,7 @@ function SobreScreen({ navigation }) {
             </View>
         </ScrollView>
       </View>
+    </View>
   );
 }
 
@@ -236,7 +247,7 @@ const styles = StyleSheet.create({
   textHeader:{
     color:'#1d2e8c',
     fontSize:25,
-    marginLeft:20,
+    margin:10,
     fontWeight:'400',
   },
   btnNavigation:{
@@ -298,5 +309,40 @@ const styles = StyleSheet.create({
     color:'white',
     padding:5,
   },
+  modalParent:{
+    position:'absolute',
+    left:0,
+    top:0,
+    width:'100%',
+    height:'100%',
+    backgroundColor:'rgba(0,0,0,0.5)',
+    zIndex:1
+  },
+  boxModal:{
+    backgroundColor:'white',
+    borderRadius:20,
+    height:370,
+    width:'90%',
+    position:'absolute',
+    left:0,
+    top:'50%',
+    marginTop:-185,
+    marginLeft:'5%',
+    padding:10,
+  },
+  btnModal:{
+    width:'100%',
+    height:'100%',
+    justifyContent:'center',
+    borderRadius:20,
+  },
+  inputModal:{
+    width:'100%',
+    height:50,
+    borderRadius:20,
+    borderColor:'#ccc',
+    borderWidth:1,
+    padding:10,
+  }
 
 });
