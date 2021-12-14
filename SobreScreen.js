@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
       borderRadius:20 
     },
     containerSobre:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       borderRadius:20,
       flexDirection:'column', 
       alignItems:'center', 
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
       fontWeight:'400',
     },
     btnNavigation:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:20,
       marginTop:15,
       flexDirection:'row',
       borderRadius:30,
     },
     btnSite:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:15,
       margin:15,
       flexDirection:'row',
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
       borderRadius:20,
     },
     cardHeader:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:15,
       borderRadius:20,
       //shadowColor:'black',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
       alignItems:'center'
     },
     btnContact:{
-      backgroundColor:'#FF9F1C',
+      backgroundColor:'#F08C4A',
       padding:15,
       borderRadius:20,
       //shadowColor:'black',

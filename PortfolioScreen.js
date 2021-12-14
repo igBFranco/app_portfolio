@@ -95,14 +95,14 @@ const styles = StyleSheet.create({
       fontWeight:'400',
     },
     btnNavigation:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:20,
       marginTop:15,
       flexDirection:'row',
       borderRadius:30,
     },
     btnSite:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:15,
       margin:15,
       flexDirection:'row',

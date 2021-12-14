@@ -39,7 +39,7 @@ function App() {
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#011627',
+          tabBarActiveTintColor: '#223656',
           tabBarInactiveTintColor: 'gray',
         })}
       >

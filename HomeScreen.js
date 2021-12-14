@@ -13,23 +13,23 @@ export default function HomeScreen({ navigation }) {
         <ScrollView bounces='false' contentContainerStyle={{padding:20}} style={styles.container}>
             <View>
               <TouchableOpacity onPress={()=>navigation.navigate('Sobre')} style={styles.btnNavigation}>
-                <Ionicons name="ios-information-circle" size={29} color='#ff7477'></Ionicons>
+                <Ionicons name="ios-information-circle" size={29} color='#EED590'></Ionicons>
                 <Text style={{color:'white', margin:8, fontWeight:'600'}}>Sobre</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={ ()=>navigation.navigate('Portfolio')} style={styles.btnNavigation}>
-                <Ionicons name="ios-ribbon" size={29} color='#ff7477'></Ionicons>
+                <Ionicons name="ios-ribbon" size={29} color='#EED590'></Ionicons>
                 <Text style={{color:'white', margin:8, fontWeight:'600'}}>Portfolio</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://github.com/igBFranco')}} style={styles.btnNavigation}>
-                <Ionicons name="logo-github" size={29} color='#ff7477'></Ionicons>
+                <Ionicons name="logo-github" size={29} color='#EED590'></Ionicons>
                 <Text style={{color:'white', margin:8, fontWeight:'600'}}>GitHub</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://www.linkedin.com/in/igorbuenofranco/')}} style={styles.btnNavigation}>
-                <Ionicons name="logo-linkedin" size={29} color='#ff7477'></Ionicons>
+                <Ionicons name="logo-linkedin" size={29} color='#EED590'></Ionicons>
                 <Text style={{color:'white', margin:8, fontWeight:'600'}}>LinkedIn</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://www.instagram.com/igorbfranco/')}} style={styles.btnNavigation}>
-                <Ionicons name="logo-instagram" size={29} color='#ff7477'></Ionicons>
+                <Ionicons name="logo-instagram" size={29} color='#EED590'></Ionicons>
                 <Text style={{color:'white', margin:8, fontWeight:'600'}}>Instagram</Text>
               </TouchableOpacity>
             </View>
@@ -45,7 +45,7 @@ export default function HomeScreen({ navigation }) {
       borderRadius:20 
     },
     containerHome:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       borderRadius:20,
       flexDirection:'row', 
       alignItems:'center', 
@@ -67,14 +67,14 @@ export default function HomeScreen({ navigation }) {
       fontWeight:'400',
     },
     btnNavigation:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:20,
       marginTop:15,
       flexDirection:'row',
       borderRadius:30,
     },
     btnSite:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:15,
       margin:15,
       flexDirection:'row',
@@ -88,7 +88,7 @@ export default function HomeScreen({ navigation }) {
       borderRadius:20,
     },
     cardHeader:{
-      backgroundColor:'#011627',
+      backgroundColor:'#223656',
       padding:15,
       borderRadius:20,
       //shadowColor:'black',
