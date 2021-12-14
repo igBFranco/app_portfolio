@@ -1,5 +1,7 @@
+import { doc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
+import { db } from './firebase.js';
 
 
 export default function Modal(props) {
@@ -8,7 +10,10 @@ export default function Modal(props) {
   const [mensagem, setMensagem] = useState('');
 
   const enviarMensagem = ()=>{
-    alert(`Olá ${nome}, sua mensagem: ${mensagem} foi enviada com sucesso!`);
+    setDoc(doc(db, 'contato', 'contato'), {
+      nome: nome,
+      mensagem: mensagem});
+    alert('Mensagem enviada com sucesso!');
   }
 
 
