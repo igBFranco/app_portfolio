@@ -1,4 +1,4 @@
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
 import { db } from './firebase.js';
@@ -10,10 +10,13 @@ export default function Modal(props) {
   const [mensagem, setMensagem] = useState('');
 
   const enviarMensagem = ()=>{
-    setDoc(doc(db, 'contato', 'contato'), {
+    addDoc(collection(db, 'contato'), {
       nome: nome,
       mensagem: mensagem});
     alert('Mensagem enviada com sucesso!');
+
+    setNome('');
+    setMensagem('');
   }
 
 
@@ -25,9 +28,9 @@ export default function Modal(props) {
           </View>
           <View style={styles.boxModal}>
               <Text style={{...styles.textHeader, fontSize:20}}>Qual o seu Nome?</Text>
-              <TextInput onChangeText={(text)=>setNome(text)} style={styles.inputModal} placeholder='Digite seu nome' numberOfLines={4}></TextInput>
+              <TextInput value={nome} onChangeText={(text)=>setNome(text)} style={styles.inputModal} placeholder='Digite seu nome' numberOfLines={4}></TextInput>
               <Text style={{...styles.textHeader, fontSize:20}}>Qual a sua Mensagem?</Text>
-              <TextInput onChangeText={(text)=>setMensagem(text)} style={{...styles.inputModal, height:100}} placeholder='Digite sua mensagem' numberOfLines={4}></TextInput>
+              <TextInput value={mensagem} onChangeText={(text)=>setMensagem(text)} style={{...styles.inputModal, height:100}} placeholder='Digite sua mensagem' numberOfLines={4}></TextInput>
               <TouchableOpacity onPress={ ()=>enviarMensagem()} style={{...styles.btnNavigation, justifyContent:'center', width:'90%', marginLeft:'5%'}}>
                 <Text style={{color:'white', margin:8, fontWeight:'700', fontSize:15}}>Enviar</Text>
             </TouchableOpacity>
